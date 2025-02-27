@@ -1,0 +1,25 @@
+{
+  "lists": [
+    {
+      "id": 1,
+      "name": "Supermarkt",
+      "icon": "🛒",
+      "status": "offen",
+      "articles": [1, 2]
+    },
+    {
+      "id": 2,
+      "name": "Drogerie",
+      "icon": "🛒",
+      "status": "abgeschlossen",
+      "articles": [3, 4]
+    }
+  ],
+  "articles": [
+    { "id": 1, "name": "Milch", "quantity": 1, "bought": false, "tag": "Lebensmittel", "icon": "🥛" },
+    { "id": 2, "name": "Brot", "quantity": 1, "bought": false, "tag": "Lebensmittel", "icon": "🍞" },
+    { "id": 3, "name": "Shampoo", "quantity": 1, "bought": true, "tag": "Drogerie", "icon": "🧴" },
+    { "id": 4, "name": "Seife", "quantity": 1, "bought": true, "tag": "Haushalt", "icon": "🧼" }
+  ],
+  "tags": ["Lebensmittel", "Drogerie", "Haushalt"]
+}

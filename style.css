@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+.btn-success{
+    background-color: #d5a5fa; !important;
+    border-color: #d5a5fa !important;
+
+}
+
+.header {
+    background-color: #d5a5fa;
+}
+
+.header .title {
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+
+/* Row nimmt volle Höhe ein, spalten scrollen independently */
+.full-height-row {
+    height: 100vh;      /* voller Bildschirm */
+    display: flex;      /* Spalten nebeneinander */
+    flex-wrap: nowrap;  /* kein Zeilenumbruch */
+    overflow: hidden;   /* verhindert scroll in der row selbst */
+}
+
+/* Jede Spalte scrollt für sich */
+.scrollable-col {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Linke Spalte */
+.sidebar {
+    border-right: 1px solid #ddd;
+}
+
+/* Mittlere Spalte (Detailansicht) */
+.detail-view {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    /* optional: background-color: white; */
+}
+
+
+.nav-tabs {
+    border-bottom: 2px solid #d5a5fa;
+}
+.nav-link.active {
+    background-color: #d5a5fa;
+    color: white;
+}
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Farbhintergrund für detail header */
+.detail-header {
+    background-color: #f1f1f1;
+    border-radius: 0.25rem;
+}
+.detail-body {
+    background-color: #fff;
+}
+
+
+@media (max-width: 768px) {
+
+    #left-col {
+        display: block; /* or none if you want it hidden by default */
+    }
+    #detail-view {
+        display: none; /* standard: hide detail col on mobile */
+    }
+    #detail-view.show {
+        display: block !important;
+    }
+}
+
+
+
+#left-col {
+    border-right: 1px solid #ddd;
+}
+#right-col {
+    border-left: 1px solid #ddd;
+}
+
+
+.full-height-row {
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.scrollable-col {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Ab Desktop: normales 3-Spalten-Layout */
+@media (min-width: 768px) {
+    /* ... normal, alles sichtbar ... */
+    #detail-view {
+        display: block !important;  /* Sicherheit, falls wir es im Mobile ausblenden */
+    }
+    #right-col {
+        display: block !important;  /* dito */
+    }
+}
+
+/* Mobile: default => rechte Spalte versteckt, mittlere Spalte sichtbar */
+@media (max-width: 767.98px) {
+    #right-col {
+        display: none; /* unsichtbar auf Mobile */
+    }
+    #right-col.show {
+        display: block !important;
+    }
+    #detail-view {
+        display: block; /* Standard: Detail sichtbar, bis wir es umschalten */
+    }
+    #detail-view.hide {
+        display: none !important;
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* Jedes Listen-Item bekommt diese Animation */
+.list-slide-up {
+    animation: slide-up 0.8s ease forwards;
+}
+
+@keyframes pulseAnim {
+    0% {
+        transform: scale(1.02);
+        background-color: #dfbcfa;
+    }
+    50% {
+        transform: scale(0.98);
+        background-color: #f0ddff;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #ffffff;
+    }
+}
+.pulse {
+    animation: pulseAnim 1s ease-out forwards;
+}
+
