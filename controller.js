@@ -16,7 +16,7 @@ class ShoppingController {
         shoppingViewInstance.renderLists(shoppingModelInstance.lists);
         tagViewInstance.renderTags(shoppingModelInstance.tags);
 
-        // Detailansicht initial leeren
+        // Detailansicht leeren
         shoppingViewInstance.renderDetailView(null);
 
         // Event für Klicks in der Listenübersicht
@@ -32,39 +32,6 @@ class ShoppingController {
             }
         };
 
-        let articleModalElement = document.getElementById('article-modal');
-        if (articleModalElement) {
-            let articleModal = new bootstrap.Modal(articleModalElement);
-            let openArticleModalBtn = document.getElementById('open-article-modal');
-            if (openArticleModalBtn) {
-                openArticleModalBtn.onclick = () => {
-                    articleModal.show();
-                };
-            }
-        }
-
-        let addItemBtn = document.getElementById("add-item-btn");
-        if (addItemBtn) {
-            addItemBtn.onclick = () => {
-                let itemNameInput = document.getElementById("item-name");
-                let itemQuantityInput = document.getElementById("item-quantity");
-                let listTitle = document.getElementById("list-title");
-                if (!itemNameInput || !itemQuantityInput || !listTitle) return;
-                let itemName = itemNameInput.value.trim();
-                let itemQuantity = itemQuantityInput.value.trim();
-                if (!itemName || !itemQuantity) return;
-                let currentListId = listTitle.dataset.listid;
-                if (!currentListId) {
-                    alert("Bitte wähle eine Liste aus");
-                    return;
-                }
-
-                shoppingModelInstance.addArticleToList(currentListId, itemName, itemQuantity);
-                shoppingViewInstance.renderDetailView(shoppingModelInstance.getListById(currentListId));
-                itemNameInput.value = "";
-                itemQuantityInput.value = "";
-            };
-        }
     }
 
     // Öffnet eine Liste
@@ -122,12 +89,12 @@ class ShoppingController {
                     this.updateList(listId, newName, newIcon);
                     modal.hide();
                 }
-            }, { once: true });
+            }, { once: true }); // { once: true } sorgt dafür, dass der Listener nur einmal ausgeführt wird
             modal.show();
         }
     }
 
-    // Artikel zur Liste hinzufügen
+    // Updatet den Status eines Artikels (gekauft/nicht gekauft)
     updateArticleBoughtStatus(articleId, isBought) {
         let article = articleModelInstance.articles.find(a => a.id === articleId);
         if (article) {
@@ -143,7 +110,6 @@ class ShoppingController {
     }
 
 
-
     //öffnet eine Liste wieder (setzt den Status auf "offen")
     reopenList(listId) {
         shoppingModelInstance.reopenList(listId);
@@ -156,10 +122,6 @@ class ShoppingController {
         shoppingModelInstance.removeArticleFromList(listId, articleId);
         shoppingViewInstance.renderDetailView(shoppingModelInstance.getListById(listId));
     }
-
-
-
-
 }
 
 export const shoppingControllerInstance = new ShoppingController();

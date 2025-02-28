@@ -20,6 +20,7 @@ class ArticleModel {
         return this.#articles;
     }
 
+    // Artikel zur Artikel-Liste hinzufügen/neu anlegen
     addArticle(name, icon, tag) {
         if (!name || !icon || !tag) {
             console.warn("Fehlende Felder beim Artikel anlegen!");

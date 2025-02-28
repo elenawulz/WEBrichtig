@@ -1,5 +1,5 @@
 // view.js
-//import { shoppingViewInstance } from "./view.js"; // Hier wird die eigene Instanz nicht benötigt
+
 import { shoppingControllerInstance } from "./controller.js";
 import { articleModelInstance } from "./articleModel.js";
 
@@ -32,6 +32,7 @@ class ShoppingView {
         return this.#dom;
     }
 
+    // Funktion zum Hinzufügen einer Liste
     handleAddList() {
         const name = this.#dom.listNameInput.value.trim();
         const icon = this.#dom.listIconInput.value.trim();
@@ -44,6 +45,7 @@ class ShoppingView {
         this.#dom.listIconInput.value = "";
     }
 
+    // Funktion zum Rendern der Listenübersicht
     renderLists(lists) {
         console.log("Rendering Lists:", lists);
         this.#dom.listContainer.innerHTML = "";
@@ -79,6 +81,7 @@ class ShoppingView {
         });
     }
 
+    // Funktion zum Rendern der Detailansicht
     renderDetailView(list) {
         console.log("Rendering Detail View for List:", list);
         if (!list) {
@@ -143,6 +146,7 @@ class ShoppingView {
             this.#dom.itemList.innerHTML = "<p>Keine Artikel in dieser Liste.</p>";
             return;
         }
+
         this.#dom.itemList.innerHTML = list.articles.map(itemObj => {
             let baseArticle = articleModelInstance.articles.find(a => a.id === itemObj.id);
             if (!baseArticle) {

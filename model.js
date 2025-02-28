@@ -13,6 +13,7 @@ class ShoppingModel extends Subject {
         this.loadData();
     }
 
+    // Daten aus data.json laden
     async loadData() {
         try {
             let response = await fetch("data.json");
@@ -38,6 +39,7 @@ class ShoppingModel extends Subject {
         }
     }
 
+
     get lists() {
         return Array.from(this.#lists.values());
     }
@@ -50,6 +52,7 @@ class ShoppingModel extends Subject {
         return this.#lists.get(Number(id));
     }
 
+    //Artikel zur Liste hinzufügen
     addArticleToList(listId, articleId) {
         let list = this.#lists.get(Number(listId));
         if (!list) {
@@ -65,6 +68,7 @@ class ShoppingModel extends Subject {
         this.notify("updateLists", this.lists);
     }
 
+    //Artikel von der Liste entfernen
     removeArticleFromList(listId, articleId) {
         let list = this.#lists.get(Number(listId));
         if (!list) {
@@ -81,6 +85,7 @@ class ShoppingModel extends Subject {
         this.notify("updateLists", this.lists);
     }
 
+    //Liste erstellen
     addList(name, icon) {
         const newList = {
             id: Date.now(),
@@ -94,11 +99,13 @@ class ShoppingModel extends Subject {
         return newList;
     }
 
+    //Liste löschen
     deleteList(listId) {
         this.#lists.delete(Number(listId));
         this.notify("updateLists", this.lists);
     }
 
+    //Liste abschließen
     completeList(listId) {
         let list = this.#lists.get(Number(listId));
         if (list) {
@@ -107,6 +114,7 @@ class ShoppingModel extends Subject {
         }
     }
 
+    //Liste umbenennen
     updateList(listId, name, icon) {
         let list = this.#lists.get(Number(listId));
         if (list) {
@@ -116,6 +124,7 @@ class ShoppingModel extends Subject {
         }
     }
 
+    //Liste öffnen
     reopenList(listId) {
         let list = this.#lists.get(Number(listId));
         if (list) {

@@ -4,6 +4,7 @@ class Subject {
         this.observers = {};
     }
 
+    // Subscribe zu einem Event, um Benachrichtigungen zu erhalten
     subscribe(event, listenerObj, callback) {
         if (!this.observers[event]) {
             this.observers[event] = [];
@@ -12,6 +13,7 @@ class Subject {
         console.log(`[Subject] Subscribed to event: ${event}`, listenerObj);
     }
 
+    // Benachrichtige alle Subscriber über ein Event
     notify(event, data) {
         if (this.observers[event]) {
             console.log(`[Subject] Notifying ${this.observers[event].length} listeners for event: ${event}`, data);
